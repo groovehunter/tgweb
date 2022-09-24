@@ -1,0 +1,41 @@
+	
+#coolMenu,
+#coolMenu ul {
+    list-style: none;
+}
+#coolMenu {
+    float: left;
+}
+#coolMenu > li {
+    float: left;
+}
+#coolMenu li a {
+		display: block;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 1.5em;
+    text-decoration: none;
+		background-color: #aaa;
+		text-color: #eee;
+}
+#coolMenu ul {
+    position: absolute;
+    display: none;
+		z-index: 999;
+    width: 180px;
+}
+#coolMenu ul li a {
+    width: 195px;
+}
+#coolMenu li:hover ul {
+    display: block;
+		background-color: #ccc;
+}
+#coolMenu ul li {
+	margin: 2px;
+	box-shadow: 2px 3px 3px #777;
+}
+/*
+	border: 1px solid black;
+		border-width: 2px;
+*/

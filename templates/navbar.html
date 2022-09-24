@@ -1,0 +1,18 @@
+
+
+  <ul id="coolMenu">
+  {% for section in menudata %}
+    <li>
+      <a href="{% url section.urlname %}" class="">{{section.name}}</a>
+
+      <ul>
+      {% for link in section.links %}
+        <li>
+          <a href="{% url link.urlname %}" class="">{{link.name}}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </li>
+
+  {% endfor %}
+  </ul>

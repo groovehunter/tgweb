@@ -1,0 +1,105 @@
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+[class^="box-"] {
+	padding: 6px;
+  background-color: skyblue;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  display: grid;
+	row-gap: 20px;
+  grid-template-rows: 200px auto 100px;
+  grid-template-areas:
+	"A A  A A  E E"
+	"B B  B B  C C"
+	"B B  B B  C C"
+	"D D  D D  D D"
+}
+
+/*
+grid-template-columns: repeat(6, 1fr);
+grid-template-rows: repeat(4, 1fr);
+  gap: 15px;
+  column-gap: 10px;
+	margin: 15px;
+200px auto 200px;
+  grid-auto-rows: 100px  auto 100px;
+  width: 90%;
+	justify-items : stretch;
+	align-items : stretch;
+  justify-content: center;
+  align-content : space-around;
+*/
+
+
+.box-1{
+  grid-area: A;
+}
+.box-2{
+  grid-area: B;
+}
+.box-3 {		/* Sidebar - Login - Tree nav */
+  grid-area: C;
+}
+.box-4{
+  grid-area: D;
+}
+.box-5{
+	grid-area: E;
+}
+/*
+	align-self: start;
+	align-self: stretch;
+	border: 3px solid darkblue;
+*/
+
+.round {
+	height: 90%;
+	width: 90%;
+	background-color: lightgrey;
+	border-radius: 20px;
+	padding: 20px 20px;
+}
+/*
+*/
+
+
+
+/* === cat tree view === */
+#treeUL a:hover {
+	background-color: grey;
+}
+#treeUL li {
+	list-style-type: none;
+}
+.nowrap {
+	white-space: nowrap;
+	overflow: hidden;
+}
+.leaf {
+	margin-left: 8px;
+	padding-bottom: 3px
+}
+/*
+#treeUL ul li a {
+	display: block;
+	text-decoration: none;
+}
+.children ul {
+	margin-left: 8px;
+	white-space: nowrap;
+}
+*/

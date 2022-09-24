@@ -1,0 +1,16 @@
+
+
+{% comment %}
+<br />
+    <a href="{% url 'verschenka:index' %}" class="">v2</a>
+<br />
+    <a href="/dj/verschenka/index" class="">lit</a>
+<br />
+    <a href="/{% url section.urlname %}" class="">{{section.name}}</a>
+
+<div id="dropdown" class="">
+  {% for section in menudata %}
+    <a href="/{{section.href}}" class="">{{section.name}}</a>
+  {% endfor %}
+</div>
+{% endcomment %}

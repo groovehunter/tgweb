@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+{% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Helfa Aux (develoment)</title>
+
+  <link href="{% static "css/styles.css" %}" type="text/css" static="all" rel="stylesheet" />
+  <script src="{% static "js/main.js" %}" type="text/javascript"></script>
+
+    {% block mycss %}
+    {% endblock %}
+</head>
+<body>
+
+<div class="container">
+  <div class="box-1"> A </div>
+  <div class="box-2"> B </div>
+  <div class="box-3"> C </div>
+</div>
+
+<header class="">
+    {% include "navbar.html" %}
+</header>
+
+
+    {% block content %}
+  		<!-- main content area -->
+  	{% endblock %}
+
+
+  {% if show_nav %}
+    {% else %}
+  {% endif %}
+    {% if user.is_authenticated %}
+          Hi {{ user.username }}!
+		{% endif %}
+
+
+
+
+</body>
+
+</html>
