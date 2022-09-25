@@ -2,15 +2,17 @@
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import index, page
 from helfa_aux_dev_bot import urls as helfa_aux_dev_bot_urls
-
+from . import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', index, name='home'),
-    path('page/<name>', page, name='page'),
+#    path('', views.index, name='home'),
+#    path('home', views.index, name='homebase'),
+#    path('page/<name>', views.page, name='page'),
+    path('chat/1/', views.MessageListView.as_view()),
+#    path('chat/<int:chat_id>/', views.MessageListView.as_view()),#
     path('helfa_aux_dev_bot/', include(helfa_aux_dev_bot_urls)),
+    path("admin/", admin.site.urls),
     ### apps
 #    path('users/', include('users.urls')),
 
