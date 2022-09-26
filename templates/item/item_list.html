@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+
+{% block title %}Alle Items{% endblock %}
+
+{% block content %}
+
+
+<table>
+{% for obj in object_list %}
+<tr>
+	<td>
+		{{obj.date}}
+	</td>
+	<td>
+		<a href="{{obj.author.get_absolute_url}}">{{obj.author.username}}</a>
+	</td>
+	<td>
+		{{obj.text}}
+	</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
+{% comment %}
+	{% include "generic/table_generic_inc.html" %}
+{% endcomment %}

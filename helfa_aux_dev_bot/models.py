@@ -1,12 +1,14 @@
 from django.db import models
 from django.db.models import CASCADE
+from django.urls import reverse
 
 from django_tgbot.models import AbstractTelegramUser, AbstractTelegramChat, AbstractTelegramState
 
 
 class TelegramUser(AbstractTelegramUser):
-    pass
 
+  def get_absolute_url(self):
+    return reverse('tguser-detail-view', args=[str(self.id)])
 
 class TelegramChat(AbstractTelegramChat):
   

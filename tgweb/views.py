@@ -1,7 +1,9 @@
 
 from djflow.PageController import PageController
 from djflow.ViewController import DjMixin
-from django.generic.views import ListView
+from django.views.generic import ListView, DetailView
+
+from helfa_aux_dev_bot.models import TelegramMessage, TelegramUser
 
 import logging
 lg = logging.getLogger()
@@ -15,9 +17,13 @@ def page(request, name):
 def index(request):
   return page(request, 'one')
 
+class TguserDetailView(DetailView):
+  model = TelegramUser
+
+
 class MessageListView(ListView, DjMixin):
     model = TelegramMessage
-    template_name = 'item_list.html'
+    template_name = 'item/item_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
