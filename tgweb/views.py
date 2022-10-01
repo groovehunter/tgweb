@@ -2,9 +2,11 @@
 from djflow.PageController import PageController
 from djflow.ViewController import DjMixin
 from django.views.generic import ListView, DetailView
-
-#from helfa_aux_dev_bot.models import TelegramMessage, TelegramUser
-from helfa_dev_bot.models import TelegramMessage, TelegramUser
+from django.conf import settings
+if settings.ENV == 'dev':
+  from helfa_aux_dev_bot.models import TelegramMessage, TelegramUser
+if settings.ENV == 'prod':
+  from helfa_dev_bot.models import TelegramMessage, TelegramUser
 
 import logging
 lg = logging.getLogger()
