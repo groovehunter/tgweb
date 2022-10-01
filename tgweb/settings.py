@@ -1,23 +1,11 @@
 
 from pathlib import Path
 import os
-from creds_my import mysql_pw
-from env import DATABASE_NAME, ENV #, ALLOWED_HOSTS
+from creds_my import mysql_pw, mysql_us
+from env import DATABASE_NAME, ENV, ALLOWED_HOSTS, BASE_URL, CSRF_TRUSTED_ORIGINS
 #from env import TELEGRAM_BOT_TOKEN, TELEGRAM
 
-BASE_URL = 'https://helfax.loca.lt'
-ALLOWED_HOSTS = [
-'helfa-augsburg.ddnss.de',
-'helfax.loca.lt',
-'helfa9.loca.lt',
-'localhost',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-'https://helfax.loca.lt',
-'https://helfa9.loca.lt',
-'https://helfa-augsburg.ddnss.de',
-]
+STATIC_ROOT = '/static'
 #CSRF_COOKIE_SECURE = False
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
@@ -28,9 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_NAME = 'tgweb'
 
 if ENV=='prod':
-  FORCE_SCRIPT_NAME = '/dj/'
-  #FORCE_SCRIPT_NAME = '/dj'
-  TMPPATH = '/var/www/django/tgweb/tmp'
+  TMPPATH = '/home/helfa/tmp/tgweb'
 elif ENV=='dev':
   FORCE_SCRIPT_NAME = '/'
   TMPPATH = '/var/tmp/'+BASE_NAME
@@ -58,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_tgbot',
-    'helfa_aux_dev_bot',
+    #'helfa_aux_dev_bot',
+    'helfa_dev_bot',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +88,7 @@ DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': DATABASE_NAME,
-    'USER': 'django',
+    'USER': mysql_us,
     'PASSWORD': mysql_pw,
   },
 }
