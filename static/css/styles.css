@@ -107,9 +107,11 @@ grid-template-rows: repeat(4, 1fr);
 .reply_to {
   font-size: 10px;
   background-color: #999;
+  display: inline-block;
+  padding: 2px 8px;
 }
 .weit {
-  width: 120px;
+  width: 20px;
 }
 
 td {

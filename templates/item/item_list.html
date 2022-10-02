@@ -6,28 +6,27 @@
 
 
 <table>
-  <thead>
-    <tr>
-      <th>
-        Datum/Zeit
-      </th>
-    </tr>
-    <tr>
-      <th>
-        Autor
-      </th>
-    </tr>
-    <tr>
-      <th>
-      </th>
-    </tr>
-    <tr>
-      <th>
-        (Antwort hierauf)<br />
-        Nachricht
-      </th>
-    </tr>
-  </thead>
+  <tr>
+    <th>
+      Datum/Zeit
+    </th>
+  </tr>
+  <tr>
+    <th>
+      Autor
+    </th>
+  </tr>
+  <tr>
+    <th>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      (Antwort hierauf)<br />
+      Nachricht
+    </th>
+  </tr>
+
 {% for obj in object_list %}
 <tr class="{% cycle 'even' 'odd' %}">
   <td>
@@ -40,10 +39,10 @@
   </td>
 	<td>
     {% if obj.reply_to %}
-      <span class="reply_to">
+      <div class="reply_to">
         <i>Antwort auf</i><br />
-      <a href="#mid_{{obj.reply_to.message_id}}">{{obj.reply_to.text}}</a>
-      </span>
+        <a href="#mid_{{obj.reply_to.message_id}}">{{obj.reply_to.text}}</a>
+      </div>
     {% endif %}
 		<div class="bubble">{{obj.text}}</div>
 	</td>
