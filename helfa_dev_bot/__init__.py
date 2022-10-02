@@ -1,5 +1,5 @@
-from . import credentials
+from django.conf import settings
 
 
-bot_token = credentials.BOT_TOKEN
-app_name = credentials.APP_NAME
+bot_token = settings.BOT_TOKEN
+app_name = settings.APP_NAME

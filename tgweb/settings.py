@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 from creds_my import mysql_pw, mysql_us
 from env import DATABASE_NAME, ENV, ALLOWED_HOSTS, BASE_URL, CSRF_TRUSTED_ORIGINS
-#from env import TELEGRAM_BOT_TOKEN, TELEGRAM
+from env import BOT_TOKEN, APP_NAME
 
 STATIC_ROOT = '/static'
 #CSRF_COOKIE_SECURE = False
