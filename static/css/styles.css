@@ -103,3 +103,27 @@ grid-template-rows: repeat(4, 1fr);
 	white-space: nowrap;
 }
 */
+
+.reply_to {
+  font-size: 10px;
+  background-color: #999;
+}
+.weit {
+  width: 120px;
+}
+
+td {
+  padding: 5px;
+}
+.odd {
+  background-color: #aaa;
+}
+.even {
+  background-color: #bbb;
+}
+.bubble {
+  background-color: lightgrey;
+	border-radius: 20px;
+	padding: 8px 100px 10px 10px;
+  display: inline-block;
+}

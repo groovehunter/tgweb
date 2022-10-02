@@ -6,21 +6,46 @@
 
 
 <table>
+  <thead>
+    <tr>
+      <th>
+        Datum/Zeit
+      </th>
+    </tr>
+    <tr>
+      <th>
+        Autor
+      </th>
+    </tr>
+    <tr>
+      <th>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        (Antwort hierauf)<br />
+        Nachricht
+      </th>
+    </tr>
+  </thead>
 {% for obj in object_list %}
-<tr>
+<tr class="{% cycle 'even' 'odd' %}">
   <td>
-		<a id="mid_{{obj.message_id}}">{{obj.date}}</a>
+		<a id="mid_{{obj.message_id}}">{{obj.date|date:'j.N, H:m'}}</a>
 	</td>
 	<td>
 		<a href="{{obj.author.get_absolute_url}}">{{obj.author.username}}</a>
 	</td>
-  <td>
-    {% if obj.reply_to %}
-      <a href="#mid_{{obj.reply_to.message_id}}">{{obj.reply_to.text}}</a>
-    {% endif %}
+  <td class="weit">
   </td>
 	<td>
-		{{obj.text}}
+    {% if obj.reply_to %}
+      <span class="reply_to">
+        <i>Antwort auf</i><br />
+      <a href="#mid_{{obj.reply_to.message_id}}">{{obj.reply_to.text}}</a>
+      </span>
+    {% endif %}
+		<div class="bubble">{{obj.text}}</div>
 	</td>
 </tr>
 {% endfor %}
