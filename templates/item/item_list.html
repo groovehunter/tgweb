@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block title %}Alle Items{% endblock %}
 
@@ -8,12 +8,17 @@
 <table>
 {% for obj in object_list %}
 <tr>
-	<td>
-		{{obj.date}}
+  <td>
+		<a id="mid_{{obj.message_id}}">{{obj.date}}</a>
 	</td>
 	<td>
 		<a href="{{obj.author.get_absolute_url}}">{{obj.author.username}}</a>
 	</td>
+  <td>
+    {% if obj.reply_to %}
+      <a href="#mid_{{obj.reply_to.message_id}}">{{obj.reply_to.text}}</a>
+    {% endif %}
+  </td>
 	<td>
 		{{obj.text}}
 	</td>

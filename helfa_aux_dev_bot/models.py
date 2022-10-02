@@ -3,7 +3,7 @@ from django.db.models import CASCADE
 from django.urls import reverse
 
 from django_tgbot.models import AbstractTelegramUser, AbstractTelegramChat, AbstractTelegramState
-
+#from django_tgbot.types.message import Message
 
 class TelegramUser(AbstractTelegramUser):
 
@@ -11,7 +11,7 @@ class TelegramUser(AbstractTelegramUser):
     return reverse('tguser-detail-view', args=[str(self.id)])
 
 class TelegramChat(AbstractTelegramChat):
-  
+
   def __str__(self):
     return self.title
 
@@ -39,6 +39,13 @@ class TelegramMessage(models.Model):
     default = None,
   )
   text = models.TextField()
+  reply_to = models.ForeignKey(
+    'self',
+    on_delete = models.CASCADE,
+    blank = True,
+    default = None,
+    null = True,
+  )
 
   def __str__(self):
     return self.text[:150]
