@@ -39,6 +39,13 @@ class TelegramMessage(models.Model):
     default = None,
   )
   text = models.TextField()
+  reply_to = models.ForeignKey(
+    'self', 
+    on_delete = models.CASCADE,
+    blank = True,
+    default = None,
+    null = True,
+  )
 
   def __str__(self):
     return self.text[:150]

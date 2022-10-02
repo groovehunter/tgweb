@@ -32,6 +32,8 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
   lg.debug("save message processor started...")
   msg = 'Ein Fehler ist aufgetreten: '
   text_exists = False
+  reply_to = False
+
   uptype = update.type()
   lg.debug('update type: '+ uptype)
   chat = update.get_chat()
@@ -51,6 +53,11 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
   except:
     text_exists = False
     lg.debug('no text')
+  try:
+    reply_to = message.reply_to_message
+    lg.debug(reply_to)
+  except:
+    lg.debug("msg was no reply")
 
   if not text_exists:
     lg.debug('IF no text')
@@ -77,16 +84,27 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
     #username = 'groovehunter'
     tguser, isnew = TelegramUser.objects.get_or_create(username=author.username)
 
+    if reply_to:
+      tgmsg = reply_to.message_id
+    else:
+      tgmsg = None
+    lg.debug("set reply_to to "+str(tgmsg))
+  except:
+    msg += 'in section user / reply_to; '
+    lg.debug(msg)
+
+  try:
     tgmessage, isnew = TelegramMessage.objects.get_or_create(
         message_id=message_id,
         author=tguser,
         group=tgchat,
+        reply_to=tgmsg,
     )
   except:
     msg += 'Konnte nicht tgmessage objekt erstellen.'
     lg.debug(msg)
-    bot.sendMessage(chat_id, msg)
-    return
+    #bot.sendMessage(chat_id, msg)
+    #return
 
   try:
     tgmessage.text = text
@@ -94,9 +112,11 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
     tgmessage.date = d
     tgmessage.save()
     msg = 'saved to DB: ' + text[:30] +'...'
-    bot.sendMessage(chat_id, msg)
+    lg.debug(msg)
+    #bot.sendMessage(chat_id, msg)
   except:
     msg += 'Konnte attribute des tgmessage objekts nicht speichern.'
-    bot.sendMessage(chat_id, msg)
+    lg.debug(msg)
+    #bot.sendMessage(chat_id, msg)
     return
 
