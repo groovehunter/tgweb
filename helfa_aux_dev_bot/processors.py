@@ -18,7 +18,6 @@ def hello_world(bot: TelegramBot, update: Update, state: TelegramState):
 
 """
 Next steps:
-check for reply_to attribute
 photos flat in table und message-id dazu?
 oder multi photo DB modell?
 
@@ -52,7 +51,7 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
   try:
     text = message.get_text()
     text_exists = True
-    lg.debug('text: '+text)
+    lg.debug('text: '+text[:50])
   except:
     text_exists = False
     lg.debug('no text')
@@ -96,7 +95,7 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
 
   try:
     reply_to_message = message.reply_to_message
-    #lg.debug(reply_to_message.message_id)
+    #lg.debug(reply_to_message)
     #lg.debug(message)
     if reply_to_message:
       lg.debug("msg IS A reply")

@@ -61,7 +61,7 @@ class MessageListView(ListView, DjMixin):
     return context
 
   def get_queryset(self):
-    return TelegramMessage.objects.filter(group__id=self.kwargs['group_id'])
+    return TelegramMessage.objects.filter(group__id=self.kwargs['group_id']).order_by('date').reverse()
 
   def get(self, request, *args, **kwargs):
     if not request.user.is_authenticated:
@@ -71,7 +71,6 @@ class MessageListView(ListView, DjMixin):
     self.fields_noshow = []
     context = {}
     context['cat_defined'] = False
-    context['color'] = {'groovehunter':'blue', 'pferseer':'orange'}
     #table = ItemTable(self.object_list) #, template_name="generic/table.html" )
     #context['table'] = table
     context.update(self.get_context_data())
