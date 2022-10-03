@@ -3,10 +3,10 @@ from djflow.PageController import PageController
 from djflow.ViewController import DjMixin
 from django.views.generic import ListView, DetailView
 from django.conf import settings
-if settings.ENV == 'dev':
+if 1:
   from helfa_aux_dev_bot.models import TelegramMessage, TelegramUser, TelegramChat
-if settings.ENV == 'prod':
-  from helfa_dev_bot.models import TelegramMessage, TelegramUser, TelegramChat
+#if settings.ENV == 'prod':
+#  from helfa_dev_bot.models import TelegramMessage, TelegramUser, TelegramChat
 
 import logging
 lg = logging.getLogger()

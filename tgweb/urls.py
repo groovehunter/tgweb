@@ -25,7 +25,7 @@ urlpatterns = [
 #    path('users/', include('users.urls')),
 ]
 
-if settings.ENV == 'dev':
+if 1:
   urlpatterns.append(path('helfa_aux_dev_bot/', include(helfa_aux_dev_bot_urls)))
-if settings.ENV == 'prod':
-  urlpatterns.append(path('helfa_dev_bot/', include(helfa_dev_bot_urls)))
+#if settings.ENV == 'prod':
+#  urlpatterns.append(path('helfa_dev_bot/', include(helfa_dev_bot_urls)))

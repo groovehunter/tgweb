@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tgbot',
 ]
-if ENV == 'dev':
+if 1:
   INSTALLED_APPS += ['helfa_aux_dev_bot']
 
-if ENV == 'prod':
-  INSTALLED_APPS += ['helfa_dev_bot']
+#if ENV == 'prod':
+#  INSTALLED_APPS += ['helfa_dev_bot']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
