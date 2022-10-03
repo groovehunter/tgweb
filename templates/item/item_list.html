@@ -38,7 +38,7 @@
         <a href="#mid_{{obj.reply_to.message_id}}">{{obj.reply_to.text}}</a>
       </div>
     {% endif %}
-		<div class="bubble">{{obj.text}}</div>
+		<div class="bubble">{{obj.text|linebreaks}}</div>
 	</td>
 </tr>
 {% endfor %}
