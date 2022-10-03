@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Benutzer-Profil{% endblock %}
+
+{% block content %}
+
+
+
+			Name
+    {{obj.first_name}}
+    <a href="{{obj.username}}">{{obj.username}}</a>
+      Letztes Login-Datum
+      Letzte Nachricht
+
+{% endblock %}

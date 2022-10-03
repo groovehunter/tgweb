@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Alle Telegram-User{% endblock %}
+
+{% block content %}
+
+
+<table>
+  <tr>
+    <th>
+			Name
+    </th>
+    <th>
+    </th>
+    <th>
+      
+    </th>
+    <th>
+      Letzte Nachricht
+    </th>
+  </tr>
+
+{% for obj in object_list %}
+<tr class="{% cycle 'even' 'odd' %}">
+  <td>
+		<a href="{{obj.username}}">{{obj.username}}</a>
+	</td>
+	<td>
+	</td>
+  <td class="weit">
+  </td>
+	<td>
+	</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

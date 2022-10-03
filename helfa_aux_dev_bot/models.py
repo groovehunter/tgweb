@@ -6,9 +6,26 @@ from django_tgbot.models import AbstractTelegramUser, AbstractTelegramChat, Abst
 #from django_tgbot.types.message import Message
 
 class TelegramUser(AbstractTelegramUser):
-
+  colors = {
+    3:  'red',
+    4:  'orange',
+    5:  'lightblue',
+    6:  'grey',
+    7:  'lightgrey',
+    8:  'white',
+    9:  'green',
+    10: 'blue',
+    11: 'gold',
+    12: 'lightgreen',
+  }
   def get_absolute_url(self):
-    return reverse('tguser-detail-view', args=[str(self.id)])
+    return reverse('tguser-detail-view', args=[str(self.username)])
+
+  def get_color(self):
+    return self.colors[len(self.username)]
+
+  color = property(get_color)
+
 
 class TelegramChat(AbstractTelegramChat):
 

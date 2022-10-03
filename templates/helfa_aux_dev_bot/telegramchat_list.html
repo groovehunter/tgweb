@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Alle Chats{% endblock %}
+
+{% block content %}
+
+
+<table>
+  <tr>
+    <th>
+			Titel
+    </th>
+    <th>
+    </th>
+    <th>
+      Autor
+    </th>
+    <th>
+      Letzte Nachricht
+    </th>
+  </tr>
+
+{% for obj in object_list %}
+<tr class="{% cycle 'even' 'odd' %}">
+  <td>
+		<a href="{{obj.id}}">{{obj.title}}</a>
+	</td>
+	<td>
+	</td>
+  <td class="weit">
+  </td>
+	<td>
+	</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
