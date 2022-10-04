@@ -3,7 +3,7 @@ from pathlib import Path
 import os
 from creds_my import mysql_pw, mysql_us
 from env import DATABASE_NAME, ENV, ALLOWED_HOSTS, BASE_URL, CSRF_TRUSTED_ORIGINS
-from env import BOT_TOKEN, APP_NAME
+from env import BOT_TOKEN, APP_NAME, DEBUG
 
 STATIC_ROOT = '/static'
 #CSRF_COOKIE_SECURE = False
@@ -27,12 +27,6 @@ LOG_DIR = TMPPATH + '/log'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-h31p+=4b1boz(=(_g&6nz8#*1ljq7q22)qjm!z#9u^d+2-(yvd'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-DEBUG2 = True
-
-
 
 # Application definition
 

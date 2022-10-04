@@ -74,7 +74,7 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
   try:
     ts = message.date
     tgchat = TelegramChat.objects.get(telegram_id=chat_id)
-    author = getattr(message, 'from')
+    author = getattr(message, 'from', None)
     #lg.debug('username '+author.username)
     tguser, isnew = TelegramUser.objects.get_or_create(username=author.username)
     #lg.debug('tguser '+str(tguser))
@@ -90,15 +90,15 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
         reply_to=None,
     )
   except:
-    msg += 'Konnte nicht tgmessage objekt erstellen.'
+    msg += 'Konnte nicht tgmessage objekt erstellen. - '
     lg.debug(msg)
 
+  #lg.debug('start reply check')
   try:
-    reply_to_message = message.reply_to_message
+    reply_to_message = getattr(message, 'reply_to_message', False)
     #lg.debug(reply_to_message)
-    #lg.debug(message)
     if reply_to_message:
-      lg.debug("msg IS A reply")
+      #lg.debug("msg IS A reply")
       rmid = reply_to_message.message_id
       reply_to_tgmessage = TelegramMessage.objects.get(message_id=rmid)
       #lg.debug(reply_to_tgmessage.text)

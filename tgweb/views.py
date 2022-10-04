@@ -67,10 +67,12 @@ class MessageListView(ListView, DjMixin):
     if not request.user.is_authenticated:
         #return self.access_denied()
         pass
+    tgchat = TelegramChat.objects.get(id=self.kwargs['group_id'])
     self.object_list = self.get_queryset()
     self.fields_noshow = []
     context = {}
     context['cat_defined'] = False
+    context['chat'] = tgchat
     #table = ItemTable(self.object_list) #, template_name="generic/table.html" )
     #context['table'] = table
     context.update(self.get_context_data())
