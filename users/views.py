@@ -1,10 +1,13 @@
 
 from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model, login, logout, authenticate
-from django.views.generic import CreateView, ListView, DetailView, TemplateView
-#from users.models import CustomUser
+#from django.contrib.auth.decorators import login_required
+
+from django.views.generic import CreateView, ListView, DetailView
+from django.contrib.auth.models import User
+
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from djflow.ViewController import DjMixin
 
 import logging
@@ -20,14 +23,6 @@ class UserListView(ListView, DjMixin):
         context.update(c)
         return context
 
-    def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            #return self.access_denied()
-            pass
-        context = self.get_context_data()
-        return self.render_to_response(context)
-
-
 class UserDetailView(DetailView, DjMixin):
     model = get_user_model()
     template_name = 'users/profile.html'
@@ -40,14 +35,26 @@ class UserDetailView(DetailView, DjMixin):
         return context
 
     def get_object(self, queryset=None):
-        return User.objects.get(username=self.kwargs)
+        return User.objects.get(username=self.kwargs['username'])
 
 def login_user(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        return redirect('/users/profile')
+    else:
+        # Return an 'invalid login' error message.
+        c = {}
+        return render(request, 'access_denied.html', c)
+
     pass
 
 def logout_user(request):
     logout(request)
-    return redirect('page/one')
+    return redirect('/')
 
 def LoginView(request):
     if request.method == 'POST':
@@ -58,4 +65,4 @@ def LoginView(request):
             return redirect('users/login.html')
     else:
         form = AuthenticationForm()
-    return render(request,'user/login.html', {'form':form})
+    return render(request, 'user/login.html', {'form':form})

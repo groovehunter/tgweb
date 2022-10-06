@@ -4,6 +4,8 @@ from djflow.ViewController import DjMixin
 from django.views.generic import ListView, DetailView
 from django.conf import settings
 from helfa_aux_dev_bot.models import TelegramMessage, TelegramUser, TelegramChat
+#from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 import logging
 lg = logging.getLogger()
@@ -17,7 +19,7 @@ def page(request, name):
 def index(request):
   return page(request, 'one')
 
-class TguserDetailView(DetailView, DjMixin):
+class TguserDetailView(LoginRequiredMixin, DetailView, DjMixin):
   model = TelegramUser
   #pk_slug_kwarg = 'username'
 
@@ -26,11 +28,13 @@ class TguserDetailView(DetailView, DjMixin):
     c = DjMixin.get_context_data(self)
     context.update(c)
     return context
+
   def get_object(self, queryset=None):
     return TelegramUser.objects.get(username=self.kwargs.get("username"))
 
 class TguserListView(ListView, DjMixin):
   model = TelegramUser
+
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     c = DjMixin.get_context_data(self)
@@ -38,8 +42,9 @@ class TguserListView(ListView, DjMixin):
     return context
 
 
-class ChatListView(ListView, DjMixin):
+class ChatListView(LoginRequiredMixin, ListView, DjMixin):
   model = TelegramChat
+
   def get_context_data(self, **kwargs):
       context = super().get_context_data(**kwargs)
       c = DjMixin.get_context_data(self)
@@ -47,7 +52,7 @@ class ChatListView(ListView, DjMixin):
       return context
 
 
-class MessageListView(ListView, DjMixin):
+class MessageListView(LoginRequiredMixin, ListView, DjMixin):
   model = TelegramMessage
   template_name = 'item/item_list.html'
 
@@ -61,9 +66,6 @@ class MessageListView(ListView, DjMixin):
     return TelegramMessage.objects.filter(group__id=self.kwargs['group_id']).order_by('date').reverse()
 
   def get(self, request, *args, **kwargs):
-    if not request.user.is_authenticated:
-        #return self.access_denied()
-        pass
     tgchat = TelegramChat.objects.get(id=self.kwargs['group_id'])
     self.object_list = self.get_queryset()
     self.fields_noshow = []

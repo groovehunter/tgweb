@@ -25,7 +25,9 @@
     href: user/
     urlname: users:user-list-view
     links:
-
+      - name: Login
+        href: /user/login
+        urlname: users:login
 
 
 

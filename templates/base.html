@@ -36,10 +36,10 @@
   <div class="box-3">
 		<p class="round">
 			{% if logged_in %}
-					logged in as {{username}}
-					<a href="{{pre}}users/logout">Logout<a/>
+					logged in as {{username}}<br /><br />
+					<a href="/users/logout">Logout<a/>
 			{% else %}
-				loginbox
+        {% include "loginbox.html" %}
 			{% endif %}
 		</p>
 		<p class="round">

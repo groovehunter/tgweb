@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Verschenka Community</h3>
+<h3>Alle TG-Web Nutzer<h3>
 
 <table summary="{{summary}}" class="sortable grid">
 
@@ -12,7 +12,7 @@
 
 <tr class="{% cycle 'odd' 'even' %}">
     <td>
-      <a href="{{item.get_absolute_url}}">{{item.username}}</a>
+      <a href="/users/profile/{{item.username}}">{{item.username}}</a>
     </td>
 		<td>
 			{{item.id}}
@@ -25,7 +25,3 @@
 </table>
 
 {% endblock %}
-
-{% comment %}
-{% include 'generic/table_generic_inc.html' %}
-{% endcomment %}
