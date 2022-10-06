@@ -20,18 +20,20 @@ body {
 
 .container {
   display: grid;
-	row-gap: 20px;
-  grid-template-rows: 200px auto 100px;
+	row-gap: 14px;
+	grid-template-rows: 120px auto 100px 100px;
+  grid-template-columns: auto auto auto 200px;
   grid-template-areas:
-	"A A  A A  E E"
-	"B B  B B  C C"
-	"B B  B B  C C"
-	"D D  D D  D D"
+	"A A A E"
+	"B B B C"
+	"B B B C"
+	"D D D D"
 }
 
 /*
-grid-template-columns: repeat(6, 1fr);
 grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: 200px auto 100px;
+	grid-template-columns: repeat(6, 1fr);
   gap: 15px;
   column-gap: 10px;
 	margin: 15px;
