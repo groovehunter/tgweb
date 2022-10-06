@@ -14,6 +14,7 @@ MAX_LENGTH = 35
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_NAME = 'tgweb'
+MENU_FILE = os.path.join(BASE_DIR, 'menu.yaml')
 
 if ENV=='prod':
   TMPPATH = '/home/helfa/tmp/tgweb'
@@ -111,11 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
+TIME_ZONE = 'Europe/Berlin'
 USE_TZ = True
 
 

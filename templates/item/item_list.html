@@ -27,7 +27,7 @@
 {% for obj in object_list %}
 <tr class="even">
   <td>
-		<a id="mid_{{obj.message_id}}">{{obj.date|date:'j.N, H:m'}}</a>
+		<a id="mid_{{obj.message_id}}">{{obj.date|date:'j.N, H:i'}}</a>
 	</td>
 	<td style="background-color: {{obj.author.color}};">
 		<a href="{{obj.author.get_absolute_url}}">{{obj.author.username}}</a>
