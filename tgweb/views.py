@@ -32,7 +32,7 @@ class TguserDetailView(LoginRequiredMixin, DetailView, DjMixin):
   def get_object(self, queryset=None):
     return TelegramUser.objects.get(username=self.kwargs.get("username"))
 
-class TguserListView(ListView, DjMixin):
+class TguserListView(LoginRequiredMixin, ListView, DjMixin):
   model = TelegramUser
 
   def get_context_data(self, **kwargs):
