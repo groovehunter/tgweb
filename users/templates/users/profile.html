@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<span>Benutzer-Profil von <b>{{ object.username }}</b></span>
+
+Mitglied seit: {{object.dt_added}}
+
+{{object.items}}
+
+{% endblock %}

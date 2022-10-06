@@ -19,6 +19,14 @@
     links:
 
 
+- users:
+    id: users
+    name: Benutzer
+    href: user/
+    urlname: users:user-list-view
+    links:
+
+
 
 
 

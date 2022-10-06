@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
     'django_tgbot',
+    'helfa_aux_dev_bot',
 ]
-INSTALLED_APPS += ['helfa_aux_dev_bot']
 
 
 MIDDLEWARE = [
@@ -88,6 +89,7 @@ DATABASES = {
   },
 }
 
+#AUTH_USER_MODEL = 'users.CustomUser' # new
 
 AUTH_PASSWORD_VALIDATORS = [
     {

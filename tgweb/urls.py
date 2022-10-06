@@ -18,8 +18,7 @@ urlpatterns = [
     path('tguser/', views.TguserListView.as_view(), name='tguser-list-view'),
     path('tguser/<str:username>/', views.TguserDetailView.as_view(), name='tguser-detail-view'),
     path("admin/", admin.site.urls),
-    ### apps
-#    path('users/', include('users.urls')),
+    path('users/', include('users.urls')),
 ]
 
 urlpatterns.append(path('helfa_dev_bot/', include(helfa_aux_dev_bot_urls)))

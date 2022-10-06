@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Verschenka Community</h3>
+
+<table summary="{{summary}}" class="sortable grid">
+
+<tbody>
+
+{% for item in object_list %}
+
+<tr class="{% cycle 'odd' 'even' %}">
+    <td>
+      <a href="{{item.get_absolute_url}}">{{item.username}}</a>
+    </td>
+		<td>
+			{{item.id}}
+    </td>
+</tr>
+
+{% endfor %}
+</tbody>
+
+</table>
+
+{% endblock %}
+
+{% comment %}
+{% include 'generic/table_generic_inc.html' %}
+{% endcomment %}
