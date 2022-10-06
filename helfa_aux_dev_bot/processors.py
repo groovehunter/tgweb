@@ -4,23 +4,23 @@ from django_tgbot.types.update import Update
 from .bot import state_manager
 from .models import TelegramState, TelegramMessage, TelegramUser, TelegramChat
 from .bot import TelegramBot
-
+from datetime import datetime
+"""
+from django.utils import timezone
+import pytz
+local_tz = pytz.timezone(settings.TIME_ZONE)
+utc_dt = datetime.utcfromtimestamp(timestamp).replace(tzinfo=pytz.utc)
+local_dt = local_tz.normalize(utc_dt.astimezone(local_tz))
+"""
 import logging
 lg = logging.getLogger('root')
 
-from datetime import datetime
 
-"""
-@processor(state_manager, from_states=state_types.All)
-def hello_world(bot: TelegramBot, update: Update, state: TelegramState):
-    bot.sendMessage(update.get_chat().get_id(), 'Hello!')
-"""
 
 """
 Next steps:
 photos flat in table und message-id dazu?
 oder multi photo DB modell?
-
 unterscheiden in anwendungsfall;
 ob tgweb oder ob verschenka
 """
@@ -104,8 +104,11 @@ def save_message(bot: TelegramBot, update: Update, state: TelegramState):
       #lg.debug(reply_to_tgmessage.text)
       tgmessage.reply_to = reply_to_tgmessage
     tgmessage.text = text
-    d = datetime.fromtimestamp(int(ts))
-    tgmessage.date = d
+
+    dt = datetime.fromtimestamp(int(ts))
+    #lg.debug(dt_utc)
+    lg.debug(dt)
+    tgmessage.date = dt
     tgmessage.save()
     msg = 'saved to DB: ' + text[:30] +'...'
     lg.debug(msg)
