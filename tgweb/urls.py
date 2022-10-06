@@ -3,10 +3,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-if settings.ENV == 'dev':
-  from helfa_aux_dev_bot import urls as helfa_aux_dev_bot_urls
-if settings.ENV == 'prod':
-  from helfa_dev_bot import urls as helfa_dev_bot_urls
+from helfa_aux_dev_bot import urls as helfa_aux_dev_bot_urls
 
 from . import views
 
@@ -25,7 +22,5 @@ urlpatterns = [
 #    path('users/', include('users.urls')),
 ]
 
-if 1:
-  urlpatterns.append(path('helfa_aux_dev_bot/', include(helfa_aux_dev_bot_urls)))
-#if settings.ENV == 'prod':
-#  urlpatterns.append(path('helfa_dev_bot/', include(helfa_dev_bot_urls)))
+urlpatterns.append(path('helfa_dev_bot/', include(helfa_aux_dev_bot_urls)))
+urlpatterns.append(path('helfa_aux_dev_bot/', include(helfa_aux_dev_bot_urls)))
