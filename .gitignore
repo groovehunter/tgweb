@@ -4,6 +4,7 @@ __pycache__
 
 env.py
 env2.py
+env_*
 
 creds_my.py
 

@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'interacting',
+    'location_field.apps.DefaultConfig',
+    'recurrence',
     'django_tgbot',
     'helfa_aux_dev_bot',
 ]
